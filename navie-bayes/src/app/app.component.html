@@ -1,0 +1,109 @@
+<!-- NG-ZORRO -->
+<div class="program-container">
+  <div class="result">
+    <div class="result-title">
+      <b style="font-size: 40px;">Chuẩn đoán bệnh tiểu đường</b>
+      <br/>
+      <b>sử dụng thuật toán naive bayes</b>
+      <br/>
+      <span>Kết quả: </span>
+      <span class="result-text">{{textResult}}</span>
+    </div>
+  </div>
+  <div class="title">
+    <b>Xin mời nhập các thuộc tính:</b>
+  </div>
+  <form nzLayout="vertical" nz-form [formGroup]="validateForm" style="display: flex; justify-content: space-between; margin: 0 20px;" >
+    <nz-form-item>
+      <nz-form-label  nzRequired>pregnancy</nz-form-label>
+      <nz-form-control [nzSpan]="12" nzHasFeedback>
+        <input nz-input formControlName="pregnacy" placeholder="Number" />
+      </nz-form-control>
+    </nz-form-item>
+        <nz-form-item>
+      <nz-form-label nzRequired>blood pressure</nz-form-label>
+      <nz-form-control [nzSpan]="12" nzHasFeedback>
+        <input nz-input formControlName="bloodPressure" placeholder="Number" />
+      </nz-form-control>
+    </nz-form-item>
+    
+    <nz-form-item>
+      <nz-form-label nzRequired>insulin</nz-form-label>
+      <nz-form-control [nzSpan]="12" nzHasFeedback>
+        <input nz-input formControlName="insulin" placeholder="Number" />
+      </nz-form-control>
+    </nz-form-item>
+    <nz-form-item>
+      <nz-form-label class="label" style="overflow: hidden; " nzRequired>Diabetes pedigree function</nz-form-label>
+      <nz-form-control [nzSpan]="12" nzHasFeedback>
+        <input nz-input formControlName="diabetesPedigreeFunction" placeholder="Number" />
+      </nz-form-control>
+    </nz-form-item>
+    <nz-form-item>
+      <nz-form-label nzRequired>glucose</nz-form-label>
+      <nz-form-control [nzSpan]="12" nzHasFeedback>
+        <input nz-input formControlName="glucose" placeholder="Number" />
+      </nz-form-control>
+    </nz-form-item>
+
+    <nz-form-item>
+      <nz-form-label  nzRequired>skin thickness</nz-form-label>
+      <nz-form-control [nzSpan]="12" nzHasFeedback>
+        <input nz-input formControlName="skinThickness" placeholder="Number" />
+      </nz-form-control>
+    </nz-form-item>
+
+    <nz-form-item>
+      <nz-form-label  nzRequired>BMI</nz-form-label>
+      <nz-form-control [nzSpan]="12" nzHasFeedback>
+        <input nz-input formControlName="bmi" placeholder="Number" />
+      </nz-form-control>
+    </nz-form-item>
+
+    <nz-form-item>
+      <nz-form-label  nzRequired>Age</nz-form-label>
+      <nz-form-control [nzSpan]="12" nzHasFeedback>
+        <input nz-input formControlName="age" placeholder="Number" />
+      </nz-form-control>
+    </nz-form-item>
+  </form>
+  <div class="button-container">
+
+    <button nz-button nzType="primary" (click)="submitForm()">Kiểm tra</button>
+    <button nz-button nzType="primary" (click)="resetForm()">Reset</button>
+    <button nz-button nzType="primary" (click)="toggleModal()">Lịch sử</button>
+  </div>
+  <ng-container *ngIf="isVisible">
+    <div style="text-align: center;">
+
+      <b>Lịch sử kiểm tra</b>
+    </div>
+    <nz-table [nzData]="data" [nzPageSize]="6" [nzScroll]="{x:'1000px', y: '300px'}" nzFrontPagination="false">
+      <thead>
+        <tr>
+        <th>pregnancy</th>
+        <th>blood pressure</th>
+        <th>insulin</th>
+        <th>Diabetes pedigree function</th>
+        <th>glucose</th>
+        <th>skin thickness</th>
+        <th>BMI</th>
+        <th>Age</th>
+        <th>Result</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr *ngFor="let data of data">
+        <td>{{data.prgnancies}}</td>
+        <td>{{data.blood_pressure}}</td>
+        <td>{{data.insulin}}</td>
+        <td>{{data.diabetes}}</td>
+        <td>{{data.gluco}}</td>
+        <td>{{data.skin}}</td>
+        <td>{{data.bim}}</td>
+        <td>{{data.age}}</td>
+        <td>{{data.result}}</td>
+      </tr>
+    </nz-table>
+  </ng-container>
+</div>
